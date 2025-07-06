@@ -13,7 +13,7 @@ class Quadrotor:
         self.J = 0.001
         self.g = 9.81
         self.L = 0.2
-        self.l = 0.05
+        self.k = 0.05
 
         pass
 
@@ -58,6 +58,15 @@ class Quadrotor:
     def jacobian(self, state, control_input):
         """
         Computes the Jacobian matrices A and B for the quadrotor dynamics.
+
+        Parameters:
+        state: np.array - The current state of the quadrotor [x_pos, y_pos, alpha, theta, vel_x, vel_y, ang_vel_alpha, ang_vel_theta]
+        control_input: np.array - The control inputs [Fs, Fd] (Total or symmetric force, Differential force due to the rotors)
+        
+        Returns:
+        A: np.array - The Jacobian matrix with respect to the state
+        B: np.array - The Jacobian matrix with respect to the control input
+
         """
         x_pos, y_pos, alpha, theta, vel_x, vel_y, ang_vel_alpha, ang_vel_theta = state
         Fs, Fd = control_input

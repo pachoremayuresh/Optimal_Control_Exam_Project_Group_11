@@ -119,7 +119,7 @@ def smooth_ref_trajectory(T):
     T: int - Number of time steps
     
     Returns:
-    np.array - Smoothed reference trajectory
+    np.array - Reference trajectory, Reference Inputs
     """
     # Calculate the tangent vector at the end points
     m1 = 0 # Slope at the start point
