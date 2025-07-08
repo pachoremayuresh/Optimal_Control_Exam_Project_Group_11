@@ -44,7 +44,7 @@ def step_ref_trajectory(T):
     time_points = np.linspace(0.0, 1, T)
     ref_trajectory = np.zeros((len(time_points), len(state_eq1)))
 
-    u_ref = np.zeros((len(time_points), Drone.nu))  # Control inputs for the reference trajectory
+    u_ref = np.zeros([(len(time_points)), Drone.nu])  # Control inputs for the reference trajectory
 
     for i in range(len(pos[0])):
         # Interpolate position for each state variable
@@ -63,9 +63,9 @@ def step_ref_trajectory(T):
             ref_trajectory[i, 5] = const_vel
             # ref_trajectory[i, 5] = Kv * np.sqrt ((ref_trajectory[i, 0] - state_eq2[0])**2 + (ref_trajectory[i, 1] - state_eq2[1])**2)
 
-            u_ref[1, :] = [Fr + Fl, Fr - Fl]
+            u_ref[i, :] = [Fr + Fl, Fr - Fl]
         else:
-            u_ref[1, :] = [Fr + Fl, Fr - Fl]
+            u_ref[i, :] = [Fr + Fl, Fr - Fl]
     
     # Plot all states in subplots
     
@@ -130,18 +130,18 @@ def smooth_ref_trajectory(T):
     ref_trajectory = np.zeros((len(time_points), len(state_eq1)))
 
     for i in range(len(state_eq1)):
-        if state_eq1[i] == state_eq2[i]:
+        if state_eq1[i] == state_eq2[i] == 0:
             continue
         else:
             spline = Spline([state_eq1[i], state_eq2[i]], [state_eq1[i], state_eq2[i]], [m1, m2])
 
             #Generating points for plotting the spline
-            xx = np.linspace(state_eq1[i], state_eq2[i], T - T_eq)
-            ref_trajectory[T_eq : T-T_eq, i] = spline(xx)
+            x = np.linspace(state_eq1[i], state_eq2[i], T - 2*T_eq)
+            ref_trajectory[T_eq : T-T_eq, i] = spline(x)
             ref_trajectory[T - T_eq:, i] = state_eq2[i]
 
         # Linear interpolation for the first and last third of the trajectory
-        u_ref = np.zeros((len(time_points), Drone.nu))  # Control inputs for the reference trajectory
+        u_ref = np.zeros([(len(time_points)), Drone.nu])  # Control inputs for the reference trajectory
 
         #Constant Velocity
         const_vel = 0 # Set your desired constant velocity
@@ -161,7 +161,7 @@ def smooth_ref_trajectory(T):
 
 
     # Plot all states in subplots
-        fig, axs = plt.subplots(len(state_eq1) + 2, 1, figsize=(10, 15), sharex=True,dpi=100)
+    fig, axs = plt.subplots(len(state_eq1) + 2, 1, figsize=(10, 15), sharex=True,dpi=100)
     fig.suptitle('Reference Curve', fontsize=16, y = 0.95)
     # Plot each state in a separate subplot
     for i in range(len(state_eq1)):

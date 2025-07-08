@@ -32,7 +32,7 @@ def ltv_LQR(A, B, Q, R, S, T, x0, Qf, q=None, r=None, qf=None):
     u: np.array - Control input trajectory
     
     """
-    K = np.zeros(T,nu,ns)
+    K = np.zeros((T,nu,ns))
     sigma = np.zeros((T, nu))
     P = np.zeros((T, ns, ns))
     p = np.zeros((T, ns))

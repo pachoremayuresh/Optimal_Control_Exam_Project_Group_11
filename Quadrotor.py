@@ -8,7 +8,7 @@ class Quadrotor:
         # Simulation Parameters
         self.tf = 10 # Final time (end of simulation), set to 10.
         self.dt = 0.001  # Time step size 1e-3       
-        self.T  = self.tf / self.dt  # Total number of time steps
+        self.T  = int(self.tf / self.dt)  # Total number of time steps
 
         # Model Parameters
         self.M = 0.028
@@ -58,7 +58,7 @@ class Quadrotor:
         return np.array([next_x_pos, next_y_pos, next_alpha, next_theta, next_vel_x, next_vel_y, next_ang_vel_alpha, next_ang_vel_theta])
 
 
-    def jacobian(self, state, control_input):
+    def Jacobian(self, state, control_input):
         """
         Computes the Jacobian matrices A and B for the quadrotor dynamics.
 
