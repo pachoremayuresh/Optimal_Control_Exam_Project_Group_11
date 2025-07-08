@@ -247,7 +247,7 @@ def gen_trajectory(trajectory_type, loop_type):
 if __name__ == "__main__":
 
     trajectory_type = "Step"  # Choose between "Step" or "Smooth"
-    loop_type = "open"  # Choose between "open" or "closed"
+    loop_type = "closed"  # Choose between "open" or "closed"
 
     u, x, u_ref, x_ref, max_iters, descent, J, dt, params, x_inter, u_inter, T = gen_trajectory(trajectory_type, loop_type)
 
