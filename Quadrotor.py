@@ -2,6 +2,9 @@ import numpy as np
 
 class Quadrotor:
     def __init__(self,):
+        self.ns = 8  # Number of states
+        self.nu = 2  # Number of control inputs
+
         # Simulation Parameters
         self.tf = 10 # Final time (end of simulation), set to 10.
         self.dt = 0.001  # Time step size 1e-3       

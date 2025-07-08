@@ -3,8 +3,8 @@ from Quadrotor import Quadrotor
 
 Drone = Quadrotor()
 
-ns = 8  # Number of states
-ni = 2  # Number of inputs 
+ns = Drone.ns  # Number of states
+ni = Drone.nu  # Number of inputs 
 T = Drone.T  # Total time for the trajectory
 
 # Cost Matrices to achieve the desired behaviour

@@ -44,7 +44,7 @@ def step_ref_trajectory(T):
     time_points = np.linspace(0.0, 1, T)
     ref_trajectory = np.zeros((len(time_points), len(state_eq1)))
 
-    u_ref = np.zeros((len(time_points), 2))  # Control inputs for the reference trajectory
+    u_ref = np.zeros((len(time_points), Drone.nu))  # Control inputs for the reference trajectory
 
     for i in range(len(pos[0])):
         # Interpolate position for each state variable
@@ -105,8 +105,6 @@ def step_ref_trajectory(T):
 
         # plt.show()
 
-
-
     return ref_trajectory, u_ref
 
 
@@ -143,7 +141,7 @@ def smooth_ref_trajectory(T):
             ref_trajectory[T - T_eq:, i] = state_eq2[i]
 
         # Linear interpolation for the first and last third of the trajectory
-        u_ref = np.zeros((len(time_points), 2))  # Control inputs for the reference trajectory
+        u_ref = np.zeros((len(time_points), Drone.nu))  # Control inputs for the reference trajectory
 
         #Constant Velocity
         const_vel = 0 # Set your desired constant velocity
@@ -201,8 +199,5 @@ def smooth_ref_trajectory(T):
     #     plt.grid()
 
     # plt.show()
-
-
-
 
     return ref_trajectory, u_ref
