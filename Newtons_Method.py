@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 from Quadrotor import Quadrotor
 import Ref_Trajectory as rf
-import Affine_LQR as LQR
+import LQR as LQR
 import Cost_Function as cost
 import Simulator as sim
 
@@ -240,16 +240,16 @@ def gen_trajectory(trajectory_type, loop_type):
             print('MaxIter = {}'.format(k))
             break
 
-    return u,x,u_ref, x_ref, max_iters,descent, J, Drone.dt,[Drone.M, Drone.m, Drone.J, Drone.g, Drone.L, Drone.k], x_inter, u_inter, Drone.T
+    return u, x, Pt, u_ref, x_ref, max_iters,descent, J, Drone.dt,[Drone.M, Drone.m, Drone.J, Drone.g, Drone.L, Drone.k], x_inter, u_inter, Drone.T
 
 
 
 if __name__ == "__main__":
 
-    trajectory_type = "Step"  # Choose between "Step" or "Smooth"
+    trajectory_type = "Smooth"  # Choose between "Step" or "Smooth"
     loop_type = "closed"  # Choose between "open" or "closed"
 
-    u, x, u_ref, x_ref, max_iters, descent, J, dt, params, x_inter, u_inter, T = gen_trajectory(trajectory_type, loop_type)
+    u, x, Pt, u_ref, x_ref, max_iters, descent, J, dt, params, x_inter, u_inter, T = gen_trajectory(trajectory_type, loop_type)
 
     ## Step 7: Plotting the results
     # 7.1  Optimal trajectory and desired curve
@@ -298,7 +298,7 @@ if __name__ == "__main__":
     ###7.2 Optimal trajectory, desired curve and few intermediate trajectories for stat1 and atate2.
  
     fig, axs = plt.subplots(2, 1, figsize=(10, 20), sharex=True)
-    fig.suptitle('Optimal & IntermediateTrajectories Vs RefrenceCurve for Stat1&State2', fontsize=16)
+    fig.suptitle(r'Optimal & Intermediate Trajectories Vs Refrence Curve for $x_p, y_p$', fontsize=16)
     for i in range(2):
         axs[i].plot(x[:, i],'b', label=f'opt_State {i + 1}')
         axs[i].plot(x_ref[:, i],'--r', label=f'State_ref {i + 1}')
@@ -316,6 +316,20 @@ if __name__ == "__main__":
     for ax in axs[0:1]:
       ax.legend()
     plt.grid()
+    plt.show()
+
+    # Plot the two states as separate figures for 'Optimal & Intermediate Trajectories Vs Reference Curve for $x_p, y_p$'
+    for i in range(2):
+        plt.figure()
+        plt.title(rf'State ${["x_p", "y_p"][i]}$',fontsize=16)
+        plt.plot(x[:, i], 'b', label=f'opt_State {i + 1}')
+        plt.plot(x_ref[:, i], '--r', label=f'State_ref {i + 1}')
+        for k in range(round(3)):
+            plt.plot(x_inter[k, :, i], label=f'iter {k}')
+        plt.xlabel('Time')
+        plt.ylabel(f'State {i + 1}')
+        plt.grid()
+        plt.legend()
     plt.show()
 
     # 7.3  Norm of the descent direction along iterations (semi-logarithmic scale)>

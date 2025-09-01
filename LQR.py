@@ -9,7 +9,7 @@ ns = Drone.ns  # Number of states
 def ltv_LQR(A, B, Q, R, S, T, x0, Qf, q=None, r=None, qf=None):
 
     """
-    Computes the LQR gain for a linear time-varying system.
+    Computes the LQR gain for a linear time-varying (cost) system.
     
     Parameters:
     A: np.array - State transition matrix
@@ -95,3 +95,47 @@ def ltv_LQR(A, B, Q, R, S, T, x0, Qf, q=None, r=None, qf=None):
 
         
     return K, sigma, P, x, u
+
+
+def lti_LQR(A, B, Q, R, Qf, T):
+    """
+    Computes the LQR gain for a linear time-invariant (cost) system.
+    
+    Parameters:
+    A: np.array - State transition matrix
+    B: np.array - Control input matrix
+    Q: np.array - State cost matrix
+    R: np.array - Control cost matrix
+    Qf: np.array - Terminal cost matrix
+    T: int      - Number of time steps
+    
+    Returns:
+    K: np.array - LQR gain matrix
+    P: np.array - Solution to the Riccati equation
+    
+    """
+    P = np.zeros((T, ns, ns))
+    K = np.zeros((T, nu, ns))
+
+    P[-1,:,:] = Qf  # Terminal cost matrix
+
+    # Solve Riccati equation backwards in time
+    for t in reversed(range(T-1)):
+        Qt = Q[t,:,:]
+        Rt = R[t,:,:]
+        At = A[t,:,:]
+        Bt = B[t,:,:]
+        Pt = P[t+1,:,:]
+
+        P[t,:,:] = Qt + At.T @ Pt @ At - (At.T @ Pt @ Bt) @ np.linalg.inv(Rt + Bt.T @ Pt @ Bt) @ (Bt.T @ Pt @ At)
+
+    # Compute the LQR gain
+    for t in range(T-1):
+        Rt = R[t,:,:]
+        At = A[t,:,:]
+        Bt = B[t,:,:]
+        Pt = P[t+1,:,:]
+
+        K[t,:,:] = -np.linalg.inv(Rt + Bt.T @ Pt @ Bt) @ (Bt.T @ Pt @ At)
+
+    return K, P

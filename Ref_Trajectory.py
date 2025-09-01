@@ -88,22 +88,36 @@ def step_ref_trajectory(T):
     plt.show()
 
 
-    ##################
-    # Plot each states 
-    ##################
-        # for i in range(8):
-        #     plt.figure(f'Reference State {i + 1}')
-        #     plt.title(f'Reference State {i + 1}', fontsize=16)
-        #     plt.plot(time_points, ref_trajectory[:, i],'--r', label=f'State {i + 1}')
-        #     plt.grid()
+    # ##################
+    # # Plot each states 
+    # ##################
+    # for i in range(8):
+    #     plt.figure(f'Reference State {i + 1}')
+    #     plt.title(f'Reference State {i + 1}', fontsize=16)
+    #     plt.plot(time_points, ref_trajectory[:, i],'--r', label=f'State {i + 1}')
+    #     plt.grid()
 
-        # for i in range(2):
-        #     plt.figure(f'Refrence Input {i + 1}')
-        #     plt.title(f'Refrence Input {i + 1}', fontsize=16)  
-        #     plt.plot(time_points, u_ref[:, i],'--r', label=f'input {i + 1}')
-        #     plt.grid()
+    # for i in range(2):
+    #     plt.figure(f'Refrence Input {i + 1}')
+    #     plt.title(f'Refrence Input {i + 1}', fontsize=16)  
+    #     plt.plot(time_points, u_ref[:, i],'--r', label=f'input {i + 1}')
+    #     plt.grid()
 
-        # plt.show()
+    # plt.show()
+
+    # plt.figure('Reference State x_p')
+    # plt.title(r'Reference State $x_p$', fontsize=16)
+    # plt.plot(time_points, ref_trajectory[:, 0],'--r', label=r'State $x_p$')
+    # plt.grid()
+
+
+    # plt.figure('Reference State y_p')
+    # plt.title(r'Reference State $y_p$', fontsize=16)
+    # plt.plot(time_points, ref_trajectory[:, 1],'--r', label=r'State $y_p$')
+    # plt.grid()
+
+    # plt.show()
+
 
     return ref_trajectory, u_ref
 
@@ -183,20 +197,33 @@ def smooth_ref_trajectory(T):
 
     
 
-##################
-# Plot each states 
-##################
+# #################
+# # Plot each states 
+# #################
     # for i in range(8):
     #     plt.figure(f'Reference State {i + 1}')
     #     plt.title(f'Reference State {i + 1}', fontsize=16)
-    #     plt.plot(time_points, trajectory_points[:, i],'--r', label=f'State {i + 1}')
+    #     plt.plot(time_points, ref_trajectory[:, i],'--r', label=f'State {i + 1}')
     #     plt.grid()
- 
+
     # for i in range(2):
     #     plt.figure(f'Refrence Input {i + 1}')
     #     plt.title(f'Refrence Input {i + 1}', fontsize=16)
-    #     plt.plot(time_points, uu_ref[:, i],'--r', label=f'input {i + 1}')
+    #     plt.plot(time_points, u_ref[:, i],'--r', label=f'input {i + 1}')
     #     plt.grid()
+
+    # plt.show()
+
+    # plt.figure('Reference State x_p')
+    # plt.title(r'Reference State $x_p$', fontsize=16)
+    # plt.plot(time_points, ref_trajectory[:, 0],'--r', label=r'State $x_p$')
+    # plt.grid()
+
+
+    # plt.figure('Reference State y_p')
+    # plt.title(r'Reference State $y_p$', fontsize=16)
+    # plt.plot(time_points, ref_trajectory[:, 1],'--r', label=r'State $y_p$')
+    # plt.grid()
 
     # plt.show()
 

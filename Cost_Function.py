@@ -4,19 +4,20 @@ from Quadrotor import Quadrotor
 Drone = Quadrotor()
 
 ns = Drone.ns  # Number of states
-ni = Drone.nu  # Number of inputs 
+nu = Drone.nu  # Number of inputs 
 T = Drone.T  # Total time for the trajectory
 
 # Cost Matrices to achieve the desired behaviour
 # For the trajectroy from (0,0) to (1,1)
 Qt1 = 0.001*np.diag([100, 100,100,1,1,1,1,1])
 Qt2 = 0.001*np.diag([100, 100,100,10,1,1,1,1])
-Rt = 1*np.eye(ni)
+Rt = 1*np.eye(nu)
 
-# For the trajectory from(0,0,0) to (0,0,np.pi)
+
+# For the trajectory from(0,0) to (0,np.pi)
 # Qt1 = 0.001*np.diag([100, 100,100,1,1,1,1,1])
 # Qt2 = 0.001*np.diag([100, 100,100,10,1,1,1,1])
-# Rt = 1*np.eye(ni)
+# Rt = 1*np.eye(nu)
 
 Pf = Qt2
 
@@ -64,7 +65,7 @@ def stage_cost(state, control_input, state_ref, control_input_ref, time_step):
     # The Hessian of the cost function with respect to the state and control input
     l11_dxx = Qt 
     l22_duu = Rt 
-    l12_dxu = np.zeros((ni,ns))
+    l12_dxu = np.zeros((nu,ns))
 
     QQt = l11_dxx
     RRt = l22_duu 
