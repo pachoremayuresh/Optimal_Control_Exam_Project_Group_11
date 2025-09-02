@@ -246,7 +246,7 @@ def gen_trajectory(trajectory_type, loop_type):
 
 if __name__ == "__main__":
 
-    trajectory_type = "Smooth"  # Choose between "Step" or "Smooth"
+    trajectory_type = "Step"  # Choose between "Step" or "Smooth"
     loop_type = "closed"  # Choose between "open" or "closed"
 
     u, x, Pt, u_ref, x_ref, max_iters, descent, J, dt, params, x_inter, u_inter, T = gen_trajectory(trajectory_type, loop_type)
@@ -277,13 +277,13 @@ if __name__ == "__main__":
 
     plt.show()
     
-    for i in range(8):
-        plt.figure()
-        plt.plot(x[:, i],'b', label=f'State {i + 1}')
-        plt.plot(x_ref[:, i],'--r',label=f'State_ref {i + 1}')
-        plt.xlabel('Time')
-        plt.grid()
-        plt.legend()
+    # for i in range(8):
+    #     plt.figure()
+    #     plt.plot(x[:, i],'b', label=f'State {i + 1}')
+    #     plt.plot(x_ref[:, i],'--r',label=f'State_ref {i + 1}')
+    #     plt.xlabel('Time')
+    #     plt.grid()
+    #     plt.legend()
     for i in range(2):
         plt.figure()    
         plt.plot(u[:-1,i],'b', label=f'input {i + 1}')
@@ -318,19 +318,19 @@ if __name__ == "__main__":
     plt.grid()
     plt.show()
 
-    # Plot the two states as separate figures for 'Optimal & Intermediate Trajectories Vs Reference Curve for $x_p, y_p$'
-    for i in range(2):
-        plt.figure()
-        plt.title(rf'State ${["x_p", "y_p"][i]}$',fontsize=16)
-        plt.plot(x[:, i], 'b', label=f'opt_State {i + 1}')
-        plt.plot(x_ref[:, i], '--r', label=f'State_ref {i + 1}')
-        for k in range(round(3)):
-            plt.plot(x_inter[k, :, i], label=f'iter {k}')
-        plt.xlabel('Time')
-        plt.ylabel(f'State {i + 1}')
-        plt.grid()
-        plt.legend()
-    plt.show()
+    # # Plot the two states as separate figures for 'Optimal & Intermediate Trajectories Vs Reference Curve for $x_p, y_p$'
+    # for i in range(2):
+    #     plt.figure()
+    #     plt.title(rf'State ${["x_p", "y_p"][i]}$',fontsize=16)
+    #     plt.plot(x[:, i], 'b', label=f'opt_State {i + 1}')
+    #     plt.plot(x_ref[:, i], '--r', label=f'State_ref {i + 1}')
+    #     for k in range(round(3)):
+    #         plt.plot(x_inter[k, :, i], label=f'iter {k}')
+    #     plt.xlabel('Time')
+    #     plt.ylabel(f'State {i + 1}')
+    #     plt.grid()
+    #     plt.legend()
+    # plt.show()
 
     # 7.3  Norm of the descent direction along iterations (semi-logarithmic scale)>
     plt.figure('descent direction')
@@ -353,8 +353,8 @@ if __name__ == "__main__":
     plt.show()
 
     # 7.5 Animation
-    print("the optimal control sequence is:")
-    print(u)
-    print("**************")
+    # print("the optimal control sequence is:")
+    # print(u)
+    print("Thank You!")
     simulated_states = x
     sim.animate_quadrotor(simulated_states, u, dt, params)

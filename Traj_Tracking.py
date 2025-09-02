@@ -99,7 +99,7 @@ plt.show()
 
 
 # Create a 5x2 subplot for states and inputs
-fig, axs = plt.subplots(4, 2, figsize=(12, 20), sharex=True)
+fig, axs = plt.subplots(4, 2, figsize=(10, 20), sharex=True, dpi=100)
 fig.suptitle('Optimal vs Actual Without LQR', fontsize=16)
 
 # Plot each state in the first 8 subplots
@@ -164,7 +164,7 @@ for ax in axs:
 plt.show()
 
 # Create a 5x2 subplot for states and inputs
-fig, axs = plt.subplots(4, 2, figsize=(10, 20), sharex=True)
+fig, axs = plt.subplots(5, 2, figsize=(10, 25), sharex=True, dpi=100)
 # fig, axs = plt.subplots(5, 2, figsize=(12, 20), sharex=True)
 fig.suptitle('Optimal vs Actual With LQR', fontsize=16)
 
@@ -177,16 +177,16 @@ for i in range(8):
     axs[row, col].grid()
     axs[row, col].legend(loc="lower right")
 
-# Plot each input in the last 2 subplots
-# for i in range(2):
-#     axs[4, i].plot(u[:, i], label=f'Control_LQR_Input {i + 1}')
-#     axs[4, i].plot(u_d[:, i], '--r', label=f'Desired_Control_Input {i + 1}')
-#     axs[4, i].set_ylabel(f'Input {i + 1}')
-#     axs[4, i].grid()
-#     axs[4, i].legend(loc="lower right")
+#Plot each input in the last 2 subplots
+for i in range(2):
+    axs[4, i].plot(u[:, i], label=f'Control_LQR_Input {i + 1}')
+    axs[4, i].plot(u_d[:, i], '--r', label=f'Desired_Control_Input {i + 1}')
+    axs[4, i].set_ylabel(f'Input {i + 1}')
+    axs[4, i].grid()
+    axs[4, i].legend(loc="lower right")
 
-axs[3, 0].set_xlabel('Time')
-axs[3, 1].set_xlabel('Time')
+axs[4, 0].set_xlabel('Time')
+axs[4, 1].set_xlabel('Time')
 plt.tight_layout(rect=[0, 0.03, 1, 0.97])
 plt.show()
 
@@ -204,9 +204,8 @@ bound1 = 0.05 * np.ones(len(abs_tracking_error))
 bound2 = -bound1
 
 # Plot the tracking error for each state
-fig, axs = plt.subplots(4, 2, figsize=(10, 20), sharex=True)
-plt.subplots_adjust(hspace=0.4, wspace=0.4)
-fig.suptitle('Tracking Error for Each State', fontsize=16)
+fig, axs = plt.subplots(4, 2, figsize=(10, 20), sharex=True, dpi=100)
+fig.suptitle('Tracking Error for Each State', fontsize=16,  y = 0.95)
 
 num_states = 8  # Assuming there are 8 states
 
@@ -243,8 +242,8 @@ plt.show()
 
 
 # Plot the tracking error in logarithmic scale
-fig, axs = plt.subplots(4, 2, figsize=(10, 20), sharex=True)
-fig.suptitle('Tracking Error for Each State', fontsize=16, y = 0.95)
+fig, axs = plt.subplots(4, 2, figsize=(10, 20), sharex=True, dpi=100)
+fig.suptitle('Tracking Error for Each State', fontsize=16,  y = 0.95)
 i = 0
 j = 0
 k = 1

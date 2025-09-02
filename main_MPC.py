@@ -72,11 +72,11 @@ for t in range(T-1):
     u_real_opt[t,:] = u_opt[t,:]
     x_real_opt[t+1,:] = Drone.Quadrotor_Dyanmics(x_real_opt[t,:], u_real_opt[t,:])
 
-    ###############################
-    #Add external disturbance
-    ###############################
+    ############################
+    # Add external disturbance #
+    ############################
     # if t == (T/ 2) :
-    #   xx_real_opt[t+1,:] += perturbeation # wind disturbance
+    #   x_real_opt[t+1,:] += perturbeation # wind disturbance
 
 
 ######################################################################
@@ -141,11 +141,11 @@ for t in range(T_sim):
     # Apply the first control input to the real system
     x_real_mpc[t+1, :] = Drone.Quadrotor_Dyanmics(x_real_mpc[t, :], u_real_mpc[t, :])
 
-    ###############################
-    #4.2.7 Add external disturbance
-    ###############################
+    ################################
+    # Add external disturbance III #
+    ################################
     # if  t == (T/ 2):
-    #   xx_real_mpc[t+1,:] += perturbeation #wind disturbance
+    #   x_real_mpc[t+1,:] += perturbeation #wind disturbance
 
 
 ######################################################################
@@ -175,6 +175,26 @@ plt.show()
 #     plt.grid()
 #     plt.legend()
 # plt.show() 
+
+
+plt.figure()
+plt.plot(x_real_opt[:T_sim, 0],'b', label=r'State $x_p$')
+plt.plot(x_opt[:T_sim, 0],'--r', label=r'State_ref $x_p$')
+plt.ylabel(r'State $x_p$')
+plt.xlabel('Time')
+plt.grid()
+plt.legend()
+plt.show() 
+
+
+plt.figure()
+plt.plot(x_real_opt[:T_sim, 1],'b', label=r'State $y_p$')
+plt.plot(x_opt[:T_sim, 1],'--r', label=r'State_ref $y_p$')
+plt.ylabel(r'State $y_p$')
+plt.xlabel('Time')
+plt.grid()
+plt.legend()
+plt.show() 
 
 ######################################################################
 ############ Part VI : Plot Optimal Trajectory Vs Actual #############
@@ -220,6 +240,46 @@ plt.show()
 #     plt.legend()
 # plt.show()
 
+
+plt.figure()
+plt.plot(u_real_mpc[:T_sim, 0],'b', label=r'Input $F_s$')
+plt.plot(u_opt[:T_sim, 0],'--r', label=r'Input_ref $F_s$')
+plt.ylabel(r'MPC input $F_s$')
+plt.xlabel('Time')
+plt.grid()
+plt.legend()
+plt.show() 
+
+
+plt.figure()
+plt.plot(u_real_mpc[:T_sim, 1],'b', label=r'Input $F_d$')
+plt.plot(u_opt[:T_sim, 1],'--r', label=r'Input_ref $F_d$')
+plt.ylabel(r'MPC input $F_d$')
+plt.xlabel('Time')
+plt.grid()
+plt.legend()
+plt.show() 
+
+
+plt.figure()
+plt.plot(x_real_mpc[:T_sim, 0],'b', label=r'State $x_p$')
+plt.plot(x_opt[:T_sim, 0],'--r', label=r'State_ref $x_p$')
+plt.ylabel(r'State $x_p$')
+plt.xlabel('Time')
+plt.grid()
+plt.legend()
+plt.show() 
+
+
+plt.figure()
+plt.plot(x_real_mpc[:T_sim, 1],'b', label=r'State $y_p$')
+plt.plot(x_opt[:T_sim, 1],'--r', label=r'State_ref $y_p$')
+plt.ylabel(r'State $y_p$')
+plt.xlabel('Time')
+plt.grid()
+plt.legend()
+plt.show() 
+
 ######################################################################
 ################# Part VII : Plot of Tracking Error ##################
 ######################################################################
@@ -233,9 +293,8 @@ bound2 = -bound1
 
 
 # Plot the tracking error for each state
-fig, axs = plt.subplots(4, 2, figsize=(12, 12), sharex=True, sharey=True,gridspec_kw={'height_ratios': [1, 1, 1, 1]})
-plt.subplots_adjust(hspace=0.4, wspace=0.05)
-fig.suptitle('Tracking Error for Each State "MPC Without Delta_u"', fontsize=16)
+fig, axs = plt.subplots(4, 2, figsize=(10, 20), sharex=True, dpi=100)
+fig.suptitle('Tracking Error for Each State MPC', fontsize=16,  y = 0.95)
 
 num_states = 8  # Assuming there are 8 states
 
@@ -263,8 +322,8 @@ plt.show()
 
 
 # Plot the tracking error in logarithmic scale
-fig, axs = plt.subplots(4, 2, figsize=(10, 10), sharex=True)
-fig.suptitle('Tracking Error for Each State "MPC Without Delta_u"', fontsize=16, y = 0.95)
+fig, axs = plt.subplots(4, 2, figsize=(10, 20), sharex=True, dpi=100)
+fig.suptitle('Tracking Error for Each State MPC', fontsize=16, y = 0.95)
 i = 0
 j = 0
 k = 1
