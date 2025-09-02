@@ -57,3 +57,48 @@ Begin with setting up the problem:
 
 
 Feel free to experiment and modify the parameters to explore different aspects of the control algorithms. Enjoy your journey into quadrotor control!
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+If you’d like to improve this repository, here are some ways to help:
+
+- 🐛 **Report Issues**: Found a bug or something unclear? [Open an issue](../../issues).
+- 💡 **Suggest Features**: Have an idea for improvement? Share it in an issue.
+- 🔧 **Submit Pull Requests**: Want to fix a bug, improve documentation, or add new functionality? Fork the repo and open a PR.
+- 📝 **Improve Documentation**: Even small corrections (typos, better explanations) are valuable.
+
+Please make sure to:
+1. Fork the repository  
+2. Create a feature branch (`git checkout -b feature/my-update`)  
+3. Commit your changes (`git commit -m "Description of changes"`)  
+4. Push to your branch (`git push origin feature/my-update`)  
+5. Open a Pull Request  
+
+---
+
+## ⭐ Support
+
+If you find this project useful, consider giving it a **star** on GitHub — it helps others discover the repo!
+
+---
+
+## 📬 Contact
+
+For questions or suggestions, feel free to [open an issue](../../issues) or reach out via discussions if enabled.
+
+
+
+You may also cite relevant academic papers here if applicable.
+
+Or, if available, use this BibTeX entry:
+
+```bibtex
+@misc{pachore2024quadrotor,
+  author = {Pachore Mayuresh},
+  title = {Optimal Control of a Quadrotor with Suspended Load},
+  year = {2024},
+  howpublished = {GitHub repository},
+  note = {https://github.com/pachoremayuresh/Optimal_Control_Exam_Project_Group_11},
+}
+
