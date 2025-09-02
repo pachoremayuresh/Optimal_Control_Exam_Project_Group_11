@@ -1,9 +1,28 @@
 # Optimal Control of a Quadrotor with Suspended Load
 
-This project was a part of Optimal Control Exam 2023/24 it was done by Group 11.  
-**Group Members:** Mayuresh Pachore, Ammar Garooge, Santoshkumar Hankare  
+This project investigates optimal control strategies for a quadrotor equipped
+with a suspended load, a system characterized by nonlinear and highly cou-
+pled dynamics. The study focuses on three methods: Newton’s method
+for trajectory generation, Linear Quadratic Regulator (LQR) for trajectory
+tracking, and Model Predictive Control (MPC) for predictive constrained
+control.
+Newton’s method is applied to compute optimal state-input trajectories
+between equilibrium points, exploiting second-order information for fast con-
+vergence. Both step-based and smooth reference trajectories are evaluated,
+with results showing that smooth references improve convergence speed and
+accuracy. Based on these trajectories, the system is linearized and an LQR
+controller is designed to provide robust tracking and disturbance rejection.
+Finally, an MPC framework is developed to handle system and input con-
+straints while ensuring smooth control actions. Simulations demonstrate
+that MPC achieves superior tracking in the presence of disturbances, al-
+though with higher computational cost.
+The comparative analysis highlights the complementary nature of these
+approaches: Newton’s method is effective for trajectory optimization, LQR
+ensures reliable real-time performance, and MPC provides flexibility under
+constraints. These findings contribute to the development of advanced con-
+trol solutions relevant to applications in aerial robotics and autonomous sys-
+tems.
 
-This is an enhanced version of the project with well-structured code for the exam.
 
 ---
 
@@ -87,6 +106,13 @@ If you find this project useful, consider giving it a **star** on GitHub — it 
 
 For questions or suggestions, feel free to [open an issue](../../issues) or reach out via discussions if enabled.
 
+## Acknowledgment & Credits
+
+This project was **originally developed by Group 11** as part of the *Optimal Control Exam 2023/24*.  
+I, **Mayuresh Pachore**, have **redeveloped and restructured** the code based on the original work to publish it in a more constructive and accessible form.  
+
+A special thanks to the original contributors — **Ammar Garooge** and **Santoshkumar Hankare** — for their valuable work, which laid the foundation for this enhanced version.
+
 
 
 You may also cite relevant academic papers here if applicable.
@@ -94,11 +120,11 @@ You may also cite relevant academic papers here if applicable.
 Or, if available, use this BibTeX entry:
 
 ```bibtex
-@misc{pachore2024quadrotor,
-  author = {Pachore Mayuresh},
-  title = {Optimal Control of a Quadrotor with Suspended Load},
-  year = {2024},
-  howpublished = {GitHub repository},
-  note = {https://github.com/pachoremayuresh/Optimal_Control_Exam_Project_Group_11},
+@misc{pachoremayuresh2023optimal_control_exam_project_group_11,
+  author       = {Pachore, Mayuresh},
+  title        = {Optimal Control Exam Project Group 11},
+  howpublished = {\url{https://github.com/pachoremayuresh/Optimal\_Control\_Exam\_Project\_Group\_11}},
+  year         = {2023},
+  note         = {Online; accessed 2 September 2025}
 }
 
